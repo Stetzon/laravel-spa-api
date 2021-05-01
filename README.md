@@ -1,62 +1,48 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## Purpose
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+I have created this repo as a baseline working example of a Laravel application set up to be used as a backend API for a single page application.  Laravel Sanctum and Fortify have made this process much simpler; however, there are still some common setup and configuration difficulties that I have personally run into, and that I see everywhere on Stack Overflow and Laracasts.  Too many hours have been wasted troubleshooting CORS or 419 token mismatch errors, so hopefully this example allows people to get up and running without all the headache.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Changes from default Laravel installation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Includes [Sanctum](https://laravel.com/docs/8.x/sanctum#how-it-works-spa-authentication) for session-based API Authentication for your SPA
+- Includes [Fortify](https://laravel.com/docs/8.x/fortify) to generate the default Auth Controllers and fucntionality
+- Includes [Sail](https://laravel.com/docs/8.x/sail) to quickly get up and running on any OS
+- Strip out included frontend functionality (mix, package.json, blade, js, css, etc)
+- Updated session, cors, and sanctum configuration
+    - Set default session driver to cookie
+    - Set appropriate env variables
+    - Add credential support to cors
+- Add intial auth routes
+- Add initial test user
+- Update redirect from RedirectIfAuthenticated middleware - return JSON message
+- Add fix for VerifyCsrfToken middleware to work with REST clients.  This appears to be because of the base64 encoded value for the XSRF-TOKEN cookie sometimes having rouge characters appended to the end.  It seems like when sending requests from the browser the application can handle appropriately, but when sending from a REST client like Insomnia or Postman, this would cause token mismatches or DecryptExceptions.  The fix is to read in the value of the token, strip out the extra characters at the end, then continue processing.  If anyone has better insight in to how to fix this, please do open an issue or PR!  More info here:
+    - [Changes made](https://github.com/Stetzon/laravel-spa-api/commit/ca55c9a47c4bcac514ceab64f1175d511ef621f0#diff-f28a7db3bd34f0ceb7dcdc2c804fc234b1089986b6a3a813359a27048ee5b469R35-R42)
+    - https://laracasts.com/discuss/channels/laravel/xsrf-decryptexception-the-payload-is-invalid
+    - https://stackoverflow.com/questions/44652194/laravel-decryptexception-the-payload-is-invalid
+- Include sample export configuration for an Insomnia Request Collection to quickly be able to test out the provided API endpoints. 
+- Include sample authentication feature tests
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clone the repo
+```
+$ git clone git@github.com:Stetzon/laravel-spa-api.git
+$ cd laravel-spa-api
+```
+2. Install dependencies
+```
+composer install
+```
+3. Run the application
+```
+$ vendor/bin/sail up
+```
+4. Test away
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+[MIT license](https://opensource.org/licenses/MIT).
