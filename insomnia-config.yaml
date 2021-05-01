@@ -1,0 +1,232 @@
+_type: export
+__export_format: 4
+__export_date: 2021-05-01T14:20:01.464Z
+__export_source: insomnia.desktop.app:v2021.3.0
+resources:
+  - _id: req_3a923087d06042baafc7f4c9db9e4fc1
+    parentId: wrk_cac043e791a945e99e691385f73e7987
+    modified: 1619878588400
+    created: 1619878588400
+    url: "{{ _.apiUrl }}/sanctum/csrf-cookie"
+    name: csrf
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: Accept
+        value: application/json
+        description: ""
+        id: pair_cc6f9053d34a45caadeb0fd384cab78a
+    authentication: {}
+    metaSortKey: -1619054032720
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_cac043e791a945e99e691385f73e7987
+    parentId: null
+    modified: 1619878588366
+    created: 1619878588366
+    name: Laravel SPA API
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_2852a94aaf1b4a599cd228df582fc3dc
+    parentId: wrk_cac043e791a945e99e691385f73e7987
+    modified: 1619878588404
+    created: 1619878588404
+    url: "{{ _.apiUrl }}/api/auth"
+    name: auth
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: Accept
+        value: application/json
+        description: ""
+        id: pair_cc6f9053d34a45caadeb0fd384cab78a
+      - name: Referer
+        value: "{{ _.originUrl }}"
+        description: ""
+        id: pair_06bbb926eb5a49408900f01fcf8ca3df
+        disabled: false
+      - name: X-XSRF-TOKEN
+        value: "{{ _['xsrf-token'] }}"
+        description: ""
+        id: pair_662521d9f8494856ae346f6ad7219962
+        disabled: false
+    authentication: {}
+    metaSortKey: -1619051854265
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_c1bf5f630f9a4f84980b201893e4684d
+    parentId: wrk_cac043e791a945e99e691385f73e7987
+    modified: 1619878588410
+    created: 1619878588410
+    url: "{{ _.apiUrl }}/api/user"
+    name: user
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: Accept
+        value: application/json
+        description: ""
+        id: pair_cc6f9053d34a45caadeb0fd384cab78a
+      - name: Referer
+        value: "{{ _.originUrl }}"
+        description: ""
+        id: pair_2d9a97b2f65448d9a69d7b9a399b7862
+        disabled: false
+      - name: X-XSRF-TOKEN
+        value: "{{ _['xsrf-token'] }}"
+        description: ""
+        id: pair_cde49d450aa64a80b9b093ac15fe081d
+        disabled: false
+    authentication: {}
+    metaSortKey: -1619050765037.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_875d558420954fa09f1bf39fb5b007c8
+    parentId: wrk_cac043e791a945e99e691385f73e7987
+    modified: 1619878588414
+    created: 1619878588414
+    url: "{{ _.apiUrl }}/login"
+    name: login
+    description: ""
+    method: POST
+    body:
+      mimeType: multipart/form-data
+      params:
+        - name: email
+          value: user@exmaple.com
+          description: ""
+          id: pair_1f1f89d10b2e494984ca217b42f724e3
+        - name: password
+          value: password
+          description: ""
+          id: pair_7822da4a07ba406b85e72c1e450e68fd
+    parameters: []
+    headers:
+      - name: Accept
+        value: application/json
+        description: ""
+        id: pair_cc6f9053d34a45caadeb0fd384cab78a
+      - name: X-XSRF-TOKEN
+        value: "{{ _['xsrf-token'] }}"
+        description: ""
+        id: pair_f498889e9d7c444a9a11c1eb58f4433a
+    authentication: {}
+    metaSortKey: -1619050220423.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_fa9441c8fd4542148817d83c655c26ea
+    parentId: wrk_cac043e791a945e99e691385f73e7987
+    modified: 1619878588417
+    created: 1619878588417
+    url: "{{ _.apiUrl }}/logout"
+    name: logout
+    description: ""
+    method: POST
+    body:
+      mimeType: multipart/form-data
+      params:
+        - name: email
+          value: user@example.com
+          description: ""
+          id: pair_1f1f89d10b2e494984ca217b42f724e3
+        - name: password
+          value: password
+          description: ""
+          id: pair_7822da4a07ba406b85e72c1e450e68fd
+    parameters: []
+    headers:
+      - name: Accept
+        value: application/json
+        description: ""
+        id: pair_cc6f9053d34a45caadeb0fd384cab78a
+      - name: X-XSRF-TOKEN
+        value: "{{ _['xsrf-token'] }}"
+        description: ""
+        id: pair_f498889e9d7c444a9a11c1eb58f4433a
+        disabled: false
+    authentication: {}
+    metaSortKey: -1619049948116.875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_623a98387614430c990258bef6fedda8
+    parentId: wrk_cac043e791a945e99e691385f73e7987
+    modified: 1619878588371
+    created: 1619878588371
+    name: Base Environment
+    data:
+      xsrf-token: "{% cookie _.apiUrl, 'XSRF-TOKEN' %}"
+    dataPropertyOrder:
+      "&":
+        - xsrf-token
+    color: null
+    isPrivate: false
+    metaSortKey: 1619053974143
+    _type: environment
+  - _id: jar_25248b1cb0c94c5eb33e2d35eff4b1eb
+    parentId: wrk_cac043e791a945e99e691385f73e7987
+    modified: 1619878707877
+    created: 1619878588388
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_ec75005f6ded4f0984656403c95150a2
+    parentId: wrk_cac043e791a945e99e691385f73e7987
+    modified: 1619878588430
+    created: 1619878588394
+    fileName: Laravel SPA API
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: env_173d84fc33ff442683d2758b7ffd206c
+    parentId: env_623a98387614430c990258bef6fedda8
+    modified: 1619878588373
+    created: 1619878588373
+    name: Local
+    data:
+      apiUrl: http://localhost:80
+      originUrl: http://localhost:8080
+    dataPropertyOrder:
+      "&":
+        - apiUrl
+        - originUrl
+    color: null
+    isPrivate: false
+    metaSortKey: 1619053986346
+    _type: environment
